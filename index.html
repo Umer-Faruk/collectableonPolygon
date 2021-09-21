@@ -1,0 +1,168 @@
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Contract test</title>
+     <!-- <script src='node_modules/web3/dist/web3.min.js'></script> -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.3-rc.0/web3.min.js" integrity="sha512-+18yqikfKtcOi8TjTjfcOdQsu8XaBg0JIJlZkhcsegIFgCGbQzAoTR1AeutQBNraEf8qCrSpua2EMugVWO+utA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <link rel="stylesheet" href="stayle.css">
+     <script src="https://cdn.jsdelivr.net/npm/@pinata/sdk@1.1.23/lib/pinata-sdk.min.js"></script>
+  
+   </head>
+<body>
+      
+<div class="topnav">
+  
+   <a class="active">NFT HUB</a>
+    
+    <a>  <span id="user">user..</span> <i class="fa fa-copy tooltip"  onclick="copy()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">Copy Address</span></i></a>
+    
+      
+ </div>
+   
+          
+          Status: <span id="status">Loading...</span>
+         <!-- <img id="NFTImage" src="" alt="image in ipfs" style="widows:25%;height:25%;"> -->
+          <br/>
+          <h2>Show all token of this user</h2>
+          <!-- <button onclick="balanceOFuser();">Shoe all tokens</button> -->
+
+          
+          <div id="elementid" class="flex-container"> 
+  
+          </div>
+
+
+          <h2> Create Token</h2>
+          <p>you need URI of image to create nft you can create one <a href="http://localhost:8000/" target="_blank"> create URI link</a> </p>
+
+          <input type="text" id="_tokenURI" placeholder="json ipfs CID link">
+          <button onclick="CreateNFT();">CreateToken</button>
+
+          <br/>
+         
+         
+              
+          
+ 
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Do you want to send this token ?</p>
+    <input id="adddessin" type="text" placeholder=" recever address" required= "true">
+    <button id="dataholder" onclick="TransferToken(this)"> Send Token</button>
+  </div>
+
+</div>
+    <script type="text/javascript" src="./app.js"></script>
+     
+          
+    <script>
+      function copy() {
+        /* Get the text field */
+        var copyText = document.getElementById("user");
+        
+          var text = document.getElementById("user").textContent;
+         // alert("Copied the text: " + copyText.textContent);
+          navigator.clipboard.writeText(text)
+          .then(() => {
+              console.log('Text copied to clipboard');
+              var tooltip = document.getElementById("myTooltip");
+              tooltip.innerHTML = "Copied";
+              
+              
+          })
+          .catch(err => {
+              console.error('Error in copying text: ', err);
+          });
+       
+        }
+
+        function outFunc() {
+          var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copy Address";
+        }
+
+
+            function handleFormSubmit(event) {
+              event.preventDefault();
+              
+              const data = new FormData(event.target);
+              
+              const formJSON = Object.fromEntries(data.entries());
+            
+              // for multi-selects, we need special handling
+             
+              
+              const results = document.querySelector('.results pre');
+              results.innerText = JSON.stringify(formJSON, null, 2);
+            }
+            
+            const form = document.querySelector('.contact-form');
+            form.addEventListener('submit', handleFormSubmit);
+      </script>
+ <!-- <script>
+   function pinFileToIPFS(){
+    const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
+     var input = document.getElementById("inputfile");
+    console.log(input.files.item(0));
+     var data = new FormData();
+     data.append('file', blob, input.files.item(0));
+     
+     
+     console.log(data.getAll("file"));
+     fetch(url, {  
+      method: 'POST',  
+      body: data,     
+      headers: {
+         
+        "Content-type": `multipart/form-data; boundary= ${data._boundary}`,
+        'pinata_api_key': '299e5e307c02e3848d26',
+        'pinata_secret_api_key': 'b5f4aa6a74b4b7308483b2302ab3a1a1d790d944200f005ac884746fa6d1e021'
+      }
+       // This is your file object
+    }).then(
+      response => response.json() // if the response is a JSON object
+    ).then(
+      success => console.log(success) // Handle the success response object
+    ).catch(
+      error => console.log(error) // Handle the error response object
+    );
+
+      
+   }
+ </script> -->
+
+ <!-- <script>
+  formElem.onsubmit = async (e) => {
+    e.preventDefault();
+    const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
+
+    var data = new FormData();
+    data.append("file",filecontent,{filepath: "anyname"});
+    console.log(data,);
+    let response = await fetch(url, {
+      method: 'POST',
+      body: new FormData(formElem),
+      headers: {
+         
+        "Content-type": `multipart/form-data; boundary= ${data._boundary}`,
+        'pinata_api_key': '299e5e307c02e3848d26',
+        'pinata_secret_api_key': 'b5f4aa6a74b4b7308483b2302ab3a1a1d790d944200f005ac884746fa6d1e021'
+      }
+    });
+
+    let result = await response.json();
+
+    alert(result.message);
+  };
+</script> -->
+       
+</body>
+</html>
