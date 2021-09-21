@@ -7,18 +7,51 @@
  
  // Get the <span> element that closes the modal
  var span = document.getElementsByClassName("close")[0];
+
+ if (window.ethereum) {
+     handleEthereum();
+   } 
+   else {
+     window.addEventListener('ethereum#initialized', handleEthereum, {
+       once: true,
+     });
+   
+     // If the event is not dispatched by the end of the timeout,
+     // the user probably doesn't have MetaMask installed.
+     setTimeout(handleEthereum, 3000); // 3 seconds
+   }
+   
+   function handleEthereum() {
+     const { ethereum } = window;
+     if (ethereum && ethereum.isMetaMask) {
+       console.log('Ethereum successfully detected!');
+       
+       // Access the decentralized web!
+     } else {
+       console.log('Please install MetaMask!');
+       document.getElementById("wallet").innerHTML = "Connect to wallet";
+       window.open(
+         "https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en",
+      '_blank'  
+       );
+
+     }
+   }
+ 
  ethereum.on('accountsChanged', (accounts) => {
      // Handle the new accounts, or lack thereof.
      // "accounts" will always be an array, but it can be empty.
      console.log("account chnaged");
      location.reload();
+      
      
    });
 
    ethereum.on('connect', (connectInfo) => {
         console.log("connected to wallet");
         console.log(connectInfo);
-        //location.reload();
+        // document.getElementById("wallet").innerHTML = "Connected";
+      
          
    });
 
@@ -56,18 +89,32 @@ async function loadWeb3() {
 
              if (window.ethereum) {
                  window.web3 = new Web3(window.ethereum);
+                
                  window.ethereum.enable();
+              }
+             else{
+              
              }
         }
-        else{
-
-          //install metamask
-
-          console.log("add metamask extenstion = https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en");
-        }
+         
  }
  
- 
+ function connecttowallet()
+ {
+     if (window.ethereum) {
+          window.web3 = new Web3(window.ethereum);
+          window.ethereum.enable();
+       }
+      else{
+        window.open(
+          "https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en",
+       '_blank' // <- This is what makes it open in a new window.
+        );
+        
+        
+      }
+
+ }
  function updateStatus(status) {
      const statusEl = document.getElementById('status');
      statusEl.innerHTML = status;
