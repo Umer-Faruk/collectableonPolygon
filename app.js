@@ -7,6 +7,32 @@
  
  // Get the <span> element that closes the modal
  var span = document.getElementsByClassName("close")[0];
+ ethereum.on('accountsChanged', (accounts) => {
+     // Handle the new accounts, or lack thereof.
+     // "accounts" will always be an array, but it can be empty.
+     console.log("account chnaged");
+     location.reload();
+     
+   });
+
+   ethereum.on('connect', (connectInfo) => {
+        console.log("connected to wallet");
+        console.log(connectInfo);
+        //location.reload();
+         
+   });
+
+   ethereum.on('disconnect', (error) => {
+        console.log("account disconnected");
+        console.log(error);
+        location.reload();
+   });
+
+   ethereum.on('chainChanged',(chainId) => {
+     console.log("chainChanged");
+     console.log(chainId);
+     window.location.reload();
+   });
   
  // When the user clicks on <span> (x), close the modal
  span.onclick = function() {
