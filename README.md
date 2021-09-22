@@ -9,3 +9,6 @@
 
 ### To Create your NFT You need to add Image URI you can Get this from give below link
 [Get image URI ](https://filetoipfs.herokuapp.com/)
+
+### also see your NFT collection on 
+[Opensea Testnets](https://testnets.opensea.io/collection/mycollectible-aevbmvg5tq)

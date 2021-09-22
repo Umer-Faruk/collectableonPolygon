@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Contract test</title>
+     <!-- <script src='node_modules/web3/dist/web3.min.js'></script> -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.3-rc.0/web3.min.js" integrity="sha512-+18yqikfKtcOi8TjTjfcOdQsu8XaBg0JIJlZkhcsegIFgCGbQzAoTR1AeutQBNraEf8qCrSpua2EMugVWO+utA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <link rel="stylesheet" href="stayle.css">
+     <script src="https://cdn.jsdelivr.net/npm/@pinata/sdk@1.1.23/lib/pinata-sdk.min.js"></script>
+  
+</head>
+<body>
+     <div class="topnav">
+  
+          <a class="active" href="./index.html">NFT HUB</a>
+           
+           <a>  <span id="user">user..</span> <i class="fa fa-copy tooltip"  onclick="copy()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">Copy Address</span></i></a>
+          <a style="float: right;" onclick="connecttowallet()" id="wallet">Connct wallet </a> 
+            <a href="./create.html" style="float: right;">Create NFTImage</a> 
+        </div>
+
+
+        <h2> Create Token</h2>
+        <p>you need URI of image to create nft you can create one <a href="https://filetoipfs.herokuapp.com/" target="_blank"> create URI link</a> </p>
+
+        <input type="text" id="_tokenURI" placeholder="json ipfs CID link">
+        <button onclick="CreateNFT();">CreateToken</button>
+
+        <br/>
+
+
+        <script type="text/javascript" src="./app.js"></script>
+     
+        <embed src="https://filetoipfs.herokuapp.com/" style="width:500px; height: 00px;">
+        <script>
+          function copy() {
+            /* Get the text field */
+            var copyText = document.getElementById("user");
+            
+              var text = document.getElementById("user").textContent;
+             // alert("Copied the text: " + copyText.textContent);
+              navigator.clipboard.writeText(text)
+              .then(() => {
+                  console.log('Text copied to clipboard');
+                  var tooltip = document.getElementById("myTooltip");
+                  tooltip.innerHTML = "Copied";
+                  
+                  
+              })
+              .catch(err => {
+                  console.error('Error in copying text: ', err);
+              });
+           
+            }
+    
+            function outFunc() {
+              var tooltip = document.getElementById("myTooltip");
+                tooltip.innerHTML = "Copy Address";
+            }
+    
+    
+                function handleFormSubmit(event) {
+                  event.preventDefault();
+                  
+                  const data = new FormData(event.target);
+                  
+                  const formJSON = Object.fromEntries(data.entries());
+                
+                  // for multi-selects, we need special handling
+                 
+                  
+                  const results = document.querySelector('.results pre');
+                  results.innerText = JSON.stringify(formJSON, null, 2);
+                }
+                
+                const form = document.querySelector('.contact-form');
+                form.addEventListener('submit', handleFormSubmit);
+          </script>
+          
+</body>
+</html>

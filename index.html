@@ -19,7 +19,7 @@
     
     <a>  <span id="user">user..</span> <i class="fa fa-copy tooltip"  onclick="copy()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">Copy Address</span></i></a>
    <a style="float: right;" onclick="connecttowallet()" id="wallet">Connct wallet </a> 
-      
+      <a style="float: right;" href="#create">CreateNFT</a>
  </div>
    
           
@@ -35,13 +35,6 @@
           </div>
 
 
-          <h2> Create Token</h2>
-          <p>you need URI of image to create nft you can create one <a href="https://filetoipfs.herokuapp.com/" target="_blank"> create URI link</a> </p>
-
-          <input type="text" id="_tokenURI" placeholder="json ipfs CID link">
-          <button onclick="CreateNFT();">CreateToken</button>
-
-          <br/>
          
          
               
@@ -60,6 +53,7 @@
   </div>
 
 </div>
+<hr style="width:100%;text-align:left;margin-left:0;height:2px; ">
     <script type="text/javascript" src="./app.js"></script>
      
           
@@ -163,6 +157,30 @@
     alert(result.message);
   };
 </script> -->
-       
+        
+<div id="create" style="height: 100%; 
+background-image: url('https://cdn.pixabay.com/photo/2016/10/26/19/00/domain-names-1772242_960_720.jpg');
+background-repeat: no-repeat;
+
+background-size: cover;
+">
+  <h2> Create Token</h2>
+  <p>you need URI of image to create nft you can create one <a href="https://filetoipfs.herokuapp.com/" target="_blank"> create URI link</a> </p>
+
+  <input type="text" id="_tokenURI" placeholder="json ipfs CID link">
+  <button onclick="CreateNFT();">CreateToken</button>
+  <div id="loader"></div>
+  <br>
+  <!-- <button onclick="EndLoder();"> End</button>
+  <button onclick="StartLoder();"> start</button> -->
+
+  <br/>
+ 
+</div>
+
+<footer>
+  <p>Author: Hege Refsnes<br>
+  <a href="mailto:hege@example.com">hege@example.com</a></p>
+</footer>
 </body>
 </html>

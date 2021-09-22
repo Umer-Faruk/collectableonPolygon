@@ -711,25 +711,43 @@ async function loadWeb3() {
      }
  }
 
+ function StartLoder(){
+     console.log("start loding");
+     document.getElementById("loader").style.display = "block";
+
+ }
+
+ function EndLoder(){
+     console.log("end loding");
+     document.getElementById("loader").style.display = "none";
+
+ }
+
  async function CreateNFT() {
+
    const account = await getCurrentAccount();
-   const _TokenURI = document.getElementById("_tokenURI").value;
+   const _TokenURI = document.getElementById("_tokenURI").value.split(' ').join('');;
+    
    var regex = new RegExp("^https://ipfs.io/ipfs/[a-zA-Z0-9]{46}$");
     if(regex.test(_TokenURI)) {
         
         try{
      
           updateStatus('Creating NFT');
+          StartLoder();
              await window.contract.methods.CreateNFT(_TokenURI).send({ from: account });
      
           updateStatus('!NFT Created Successfully');
+          EndLoder();
           location.reload();
         }
         catch(e){
              console.log(e);
+             EndLoder();
              alert("add correct uri or some problam in creating token");
         }
     }else {
+          EndLoder();
         alert("Enter the currect URI formet{https://ipfs.io/ipfs/your IPFS CID}");
         return false;
     }
