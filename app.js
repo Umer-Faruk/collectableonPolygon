@@ -617,9 +617,12 @@ async function loadWeb3() {
 
      var bp = document.createElement('p');
      var b = document.createElement('button');
+     
+
      b.setAttribute("data-tokenid",_tokenid);
      b.setAttribute("data-name",_name);
     
+ 
      b.textContent = "send";
      b.id = "myBtn";
      b.name = "testname";
@@ -628,7 +631,11 @@ async function loadWeb3() {
           SendTokenPOP(b.getAttribute("data-tokenid"));
 
         };
+
+        
      bp.appendChild(b);
+      
+
      carddiv.appendChild(bp)
  
       var src = document.getElementById("elementid");
@@ -787,36 +794,13 @@ async function loadWeb3() {
       TransforToken(Tid,Raddress);
  }
 
-   
-//  function pinJsonToIPFS(){
-//      var nftname =   document.getElementById("NFTname").value;
-//      var NFTDiscription =   document.getElementById("NFTDiscription").value;
-//      var NFTimageCID =   document.getElementById("NFTimageCID").value;
-
-
-//      const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
-                    
-//           fetch(url,{
-//               // Adding method type
-//             method: "POST",
-//               // Adding body or contents to send
-//             body: JSON.stringify({
-//               name: "foo",
-//               description: "bar",
-//               image: "https://ipfs.io/ipfs/QmPL3HWxMugJLzwm7DhywG1xsaJgxW6MnB211SYMSBVjN9"
-//             }),
-//               // Adding headers to the request
-//             headers: {
-              
-//               "Content-type": "application/json; charset=UTF-8",
-//               'pinata_api_key': '299e5e307c02e3848d26',
-//               'pinata_secret_api_key': 'b5f4aa6a74b4b7308483b2302ab3a1a1d790d944200f005ac884746fa6d1e021'
-//             }
-//           })// Converting to JSON
-//           .then(response => response.json())
-
-//           // Displaying results to console
-//           .then(json => console.log(json))
-                
-//           };
     
+async function DeleteToken(_tokenid){
+     // DelteNFT
+     let Tid = _tokenid;
+     console.log(Tid);
+     //alert(Tid);
+     const account = await getCurrentAccount();
+     await window.contract.methods.DelteNFT(Tid).call();
+
+}
