@@ -133,7 +133,8 @@ async function loadWeb3() {
  
  async function loadContract() {
       
-      let ABI = [{
+      let ABI = [
+          {
                "anonymous": false,
                "inputs": [
                     {
@@ -578,9 +579,9 @@ async function loadWeb3() {
                "stateMutability": "view",
                "type": "function"
           }
-     ];
+     ] ;
           
-     let contract_address = '0xf6051A0FD588A1BcCD66C03E8CBa4389d9405011';
+     let contract_address = '0x1795508d1b574c19267f766ac19f2542550C027e';
      return await new window.web3.eth.Contract(ABI, contract_address);
  }
 
